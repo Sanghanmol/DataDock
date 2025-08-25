@@ -11,11 +11,8 @@ app.use(morgan('dev'));
 const allowedOrigin = process.env.CORS_ORIGIN || '*';
 app.use(cors({ origin: allowedOrigin, credentials: true }));
 
-app.get('/health', (req, res) => res.json({ ok: true, service: 'db-mini-backend' }));
-
 app.use('/api', resultsRoutes);
 
-// Global error handler
 app.use((err, req, res, next) => {
     console.error(err);
     const status = err.status || 500;
